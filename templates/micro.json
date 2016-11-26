@@ -1,1 +1,113 @@
-{}
+{
+  "name": "Functional JavaScript",
+  "time_est": {
+    "min": 1,
+    "max": 2
+  },
+  "used_by": [
+    12,
+    11,
+    14
+  ],
+  "description": "Excepteur  XOXO portland, jean shorts ut cold-pressed craft beer try-hard direct trade  anim  selvage selfies.  Portland seitan cardigan brooklyn bespoke, kitsch farm-to-table direct trade  organic raw denim YOLO pop-up sustainable.  Hella art party hammock selvage do odio.  Live-edge tempor banh mi, bushwick fashion axe iPhone trust fund succulents wolf flannel heirloom.  Culpa  gochujang bicycle rights man braid.  Mlkshk stumptown godard, thundercats marfa cold-pressed chillwave literally brunch listicle bushwick ramps pickled.  Eu  cornhole non  hella, copper mug master cleanse culpa  cardigan.",
+  "goal": "Occaecat  odio DIY, asymmetrical polaroid salvia farm-to-table labore coloring book listicle wayfarers vinyl banh mi.  Edison bulb brooklyn kinfolk, occaecat  venmo placeat copper mug flannel quinoa commodo YOLO etsy.  Man braid kogi tattooed meh, poke exercitation pinterest church-key.  Gastropub narwhal XOXO, butcher voluptate  lo-fi meditation af cardigan mixtape kinfolk umami migas sartorial.  Reprehenderit  squid heirloom put a bird on it la croix coloring book knausgaard twee, affogato pug chartreuse raw denim VHS.  Single-origin coffee salvia mollit  drinking vinegar unicorn, woke typewriter officia.  Hoodie poke ramps, lumbersexual everyday carry cillum  ut labore locavore prism tote bag.",
+  "required_info": {
+    "interactives": [
+      {
+        "title": "nodeschool.io Functional JavaScript Course",
+        "url": "https://example.com/nodeschool-functional-js-course",
+        "author": "Steve McFakename"
+      }
+    ],
+    "videos": [
+      {
+        "title": "Functional JavaScript Series",
+        "url": "https://example.com/functional-js-series",
+        "author": "Steve McFakename",
+        "sourcetype": "YouTube"
+      }
+    ],
+    "slides": [
+      {
+        "title": "Functional JavaScript in Action",
+        "url": "https://example.com/functional-js-in-action",
+        "author": "Steve McFakename"
+      }
+    ],
+    "articles": [
+      {
+        "title": "Functional JavaScript is the Best",
+        "url": "https://example.com/functional-js-is-the-best",
+        "author": "Steve McFakename"
+      }
+    ],
+    "tools": [
+      {
+        "title": "Functional JavaScript ESLint config",
+        "url": "https://example.com/functional-js-eslint-config",
+        "author": "Steve McFakename"
+      }
+    ]
+  },
+  "additional_info": {
+    "interactives": [
+      {
+        "title": "additional nodeschool.io Functional JavaScript Course",
+        "url": "https://example.com/additional nodeschool-functional-js-course",
+        "author": "Steve McFakename"
+      }
+    ],
+    "videos": [
+      {
+        "title": "additional Functional JavaScript Series",
+        "url": "https://example.com/additional functional-js-series",
+        "author": "Steve McFakename",
+        "sourcetype": "YouTube"
+      }
+    ],
+    "slides": [
+      {
+        "title": "additional Functional JavaScript in Action",
+        "url": "https://example.com/additional functional-js-in-action",
+        "author": "Steve McFakename"
+      }
+    ],
+    "articles": [
+      {
+        "title": "additional Functional JavaScript is the Best",
+        "url": "https://example.com/additional functional-js-is-the-best",
+        "author": "Steve McFakename"
+      }
+    ],
+    "tools": [
+      {
+        "title": "additional Functional JavaScript ESLint config",
+        "url": "https://example.com/additional functional-js-eslint-config",
+        "author": "Steve McFakename"
+      }
+    ]
+  },
+  "suggested_assignments": [
+    {
+      "title": "Make a creative project that demonstrates the following:",
+      "time_est": {
+        "min": 0.25,
+        "max": 0.5
+      },
+      "requirements": [
+        "mouse tails",
+        "turkey legs",
+        "armadillo teeth",
+        "chicken math",
+        "psychedelic slugs"
+      ]
+    },
+    {
+      "title": "Demonstrate how you've done all of #1 in your work or side work"      
+    },
+    {
+      "topic": "Make something else creative that proves you are totally legit in this topic"
+    }
+  ],
+  "pr_link": "http://github.com/org/repo/path/to/file"
+}

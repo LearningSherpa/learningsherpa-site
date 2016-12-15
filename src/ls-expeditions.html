@@ -9,23 +9,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
 
-<dom-module id="my-view404">
+<dom-module id="ls-expeditions">
   <template>
-    <style>
+    <style include="shared-styles">
       :host {
         display: block;
 
-        padding: 10px 20px;
+        padding: 10px;
       }
     </style>
 
-    Oops you hit a 404. <a href="/">Head back to home.</a>
+    <div class="card">
+      <h1>Expeditions</h1>
+      <p>Expeditions are skill-building programs, curated by industry veterans. 
+      They will guide you through the skills needed to succeed. Pick an expedition, 
+      pick a level.</p>
+      <strong>Climb your mountain.</strong>
+
+      <h2>Expeditions Available:</h2>
+      <a href="#">Web Development 1</a>
+    </div>
   </template>
 
   <script>
     Polymer({
-      is: 'my-view404'
+      is: 'ls-expeditions'
     });
   </script>
 </dom-module>

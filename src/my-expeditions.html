@@ -1,0 +1,41 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-expeditions">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+    </style>
+
+    <div class="card">
+      <h1>Expeditions</h1>
+      <p>Expeditions are skill-building programs, curated by industry veterans. 
+      They will guide you through the skills needed to succeed. Pick an expedition, 
+      pick a level.</p>
+      <strong>Climb your mountain.</strong>
+
+      <h2>Expeditions Available:</h2>
+      <a href="#">Web Development 1</a>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-expeditions'
+    });
+  </script>
+</dom-module>

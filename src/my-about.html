@@ -1,0 +1,49 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-about">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+    </style>
+
+    <div class="card">
+      <h1>About</h1>
+      <p><a href="https://jakobanderson.com">I'm Jakob Anderson.</a> I am a Full-Stack JavaScript Developer, and Web Performance Champion.</p>
+      <p>Why I started it:</p>
+      <p>Like many in my field, I graduated from college with much more debt than I thought my 
+      education was worth, since the college was so far behind in my field that I ended up teaching 
+      myself most of the things I needed to get a job. I learned at work, and I learned while making 
+      fun side-projects. I feel no one should have to struggle in debt to learn or raise their skill 
+      level.</p>
+      <p>I believe that knowledge should be free, but it needed to be organized. I'd found that most 
+      of the best learning resources either cost money, or are hard to find 
+      and disorganized.</p>
+      <p>I wanted to help newer developers know the path and train for free, so I could "pay it forward" 
+      for those that helped me along the way</p>
+      <p>I believe in "learning by doing", and I formed this service with that in mind. If you stay 
+      organized, and work hard on this every day, you may be able to improve your lot in life, and 
+      you will have earned it.</p>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-about'
+    });
+  </script>
+</dom-module>

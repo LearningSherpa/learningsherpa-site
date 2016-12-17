@@ -20,7 +20,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-app.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="ls-icons.html">
 <link rel="import" href="shared-styles.html">
 
@@ -65,18 +66,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <ls-login
-        on-sign-in="signIn"
-        signed-in="[[signedIn]]"
-        disabled="[[!online]]">
-    </ls-login>
-
-    <firebase-auth
+    <!--<firebase-auth
         id="auth"
         app-name="notes"
-        provider="google"
+        provider="github"
         signed-in="{{signedIn}}"
         user="{{user}}">
+    </firebase-auth>-->
+
+    <firebase-app auth-domain="learningsherpa-3f857.firebaseapp.com"
+      database-url="https://learningsherpa-3f857.firebaseio.com"
+      api-key="AIzaSyBsv0B2RVSQqz7gw2XRNeeAF6iFdPquGCo">
+    </firebase-app>
+    <firebase-auth id="auth" user="{{user}}" provider="github" on-error="handleError">
     </firebase-auth>
 
     <app-location route="{{route}}"></app-location>
@@ -102,8 +104,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
-
+        
         <app-header condenses reveals effects="waterfall">
+          <button hidden$="[[user]]" on-click="signIn">Log in with GitHub</button>
+          <button hidden$="[[!user]]" on-click="signOut">Log out</button>
           <app-toolbar>
             <style>
             .logo {
@@ -119,10 +123,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               margin-right: 0.5em;
             }
             </style>
+            <ls-login
+              on-sign-in="signIn"
+              signed-in="[[signedIn]]"
+              disabled="[[!online]]">
+            </ls-login>
+
+            <ls-toolbar
+              signed-in="[[signedIn]]"
+              on-sign-out="signOut">
+            </ls-toolbar>
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
             <img class="logo" src="../images/rock-stone-white-opt.svg" alt="Logo"> <div main-title>Learning Sherpa</div>
           </app-toolbar>
         </app-header>
+
 
         <iron-pages
             selected="[[page]]"
@@ -154,7 +169,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       observers: [
-        '_routePageChanged(routeData.page)'
+        '_routePageChanged(routeData.page)',
+        ''
       ],
 
       _routePageChanged: function(page) {
@@ -169,7 +185,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _showPage404: function() {
         this.page = 'view404';
+      },
+
+      signIn: function() {
+        this.$.auth.signInWithPopup()
+          .then(userData => {
+            console.log({userData});
+            console.log('this.$.auth.signedIn', this.$.auth.signedIn);
+          })
+          .catch(err => {
+            console.error(new Error(err));
+          });
+      },
+      signOut: function() {
+        this.$.auth.signOut()
+          .then(() => {
+            console.log('signed out!');
+            console.log('this.user', this.user);
+          })
+          .catch(err => {
+            console.error(new Error(err));
+          });
       }
+      
     });
   </script>
 

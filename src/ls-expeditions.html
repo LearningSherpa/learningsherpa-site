@@ -9,7 +9,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 <link rel="import" href="shared-styles.html">
+
 
 <dom-module id="ls-expeditions">
   <template>
@@ -21,21 +23,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
+    <firebase-document
+      path="/expeditions/"
+      data="{{data}}">
+    </firebase-document>
+
     <div class="card">
       <h1>Expeditions</h1>
-      <p>Expeditions are skill-building programs, curated by industry veterans. 
+      <!--<p>Expeditions are skill-building programs, curated by industry veterans. 
       They will guide you through the skills needed to succeed. Pick an expedition, 
       pick a level.</p>
-      <strong>Climb your mountain.</strong>
+      <strong>Climb your mountain.</strong>-->
+      
+      <div hidden$="[[signedIn]]" class="card">Please log in to view available expeditions.</div>
 
-      <h2>Expeditions Available:</h2>
-      <a href="#">Web Development 1</a>
+      <div hidden$="[[!signedIn]]">
+        <h2>Expeditions Available:</h2>
+          <div>{{data}}</div>
+          <template is="dom-repeat" items="{{data}}" as="expedition">
+            <div>{{expedition}}</div>
+          </template>
+        <!--</div>
+          <a href="#">Web Development 1</a>
+        </div>-->
     </div>
+    
   </template>
 
   <script>
     Polymer({
-      is: 'ls-expeditions'
+      is: 'ls-expeditions',
+      properties: {
+        data: Array
+      }
     });
   </script>
 </dom-module>

@@ -20,6 +20,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-styles/paper-styles.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="ls-icons.html">
@@ -66,20 +68,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <!--<firebase-auth
-        id="auth"
-        app-name="notes"
-        provider="github"
-        signed-in="{{signedIn}}"
-        user="{{user}}">
-    </firebase-auth>-->
-
     <firebase-app auth-domain="learningsherpa-3f857.firebaseapp.com"
       database-url="https://learningsherpa-3f857.firebaseio.com"
       api-key="AIzaSyBsv0B2RVSQqz7gw2XRNeeAF6iFdPquGCo">
     </firebase-app>
-    <firebase-auth id="auth" user="{{user}}" provider="github" on-error="handleError">
-    </firebase-auth>
+    <firebase-auth id="auth" user="{{user}}" provider="github" status-known="{{statusKnown}}" signed-in="{{signedIn}}" on-error="handleError"></firebase-auth>
 
     <app-location route="{{route}}"></app-location>
     <app-route
@@ -91,7 +84,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-drawer-layout fullbleed>
       <!-- Drawer content -->
       <app-drawer>
-        <!--<app-toolbar>Menu</app-toolbar>-->
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="home" href="/home">Home</a>
           <a name="dashboard" href="/dashboard">Dashboard</a>
@@ -106,8 +98,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-header-layout has-scrolling-region>
         
         <app-header condenses reveals effects="waterfall">
-          <button hidden$="[[user]]" on-click="signIn">Log in with GitHub</button>
-          <button hidden$="[[!user]]" on-click="signOut">Log out</button>
           <app-toolbar>
             <style>
             .logo {
@@ -123,7 +113,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               margin-right: 0.5em;
             }
             </style>
-            <ls-login
+            <!--<ls-login
               on-sign-in="signIn"
               signed-in="[[signedIn]]"
               disabled="[[!online]]">
@@ -132,12 +122,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <ls-toolbar
               signed-in="[[signedIn]]"
               on-sign-out="signOut">
-            </ls-toolbar>
+            </ls-toolbar>-->
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
             <img class="logo" src="../images/rock-stone-white-opt.svg" alt="Logo"> <div main-title>Learning Sherpa</div>
+          <auth-area hidden$="[[!statusKnown]]">
+            <style>
+              auth-area {
+                font-size: 0.8em;
+              }
+            </style>
+            <paper-button fancy hidden$="[[signedIn]]" on-click="signIn">Log in</paper-button>
+            <paper-button fancy hidden$="[[!signedIn]]" on-click="signOut">Log out</paper-button>
+          </auth-area>
           </app-toolbar>
         </app-header>
-
 
         <iron-pages
             selected="[[page]]"
@@ -145,10 +143,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             fallback-selection="view404"
             role="main">
           <ls-home name="home"></ls-home>
-          <ls-dashboard name="dashboard"></ls-dashboard>
-          <ls-expeditions name="expeditions"></ls-expeditions>
+          <ls-dashboard name="dashboard" signed-in="{{signedIn}}"></ls-dashboard>
+          <ls-expeditions name="expeditions" signed-in="{{signedIn}}"></ls-expeditions>
           <ls-contribute name="contribute"></ls-contribute>
-          <ls-messages name="messages"></ls-messages>
+          <ls-messages name="messages" signed-in="{{signedIn}}"></ls-messages>
           <ls-about name="about"></ls-about>
           <ls-view404 name="view404"></ls-view404>
         </iron-pages>
@@ -169,9 +167,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       observers: [
-        '_routePageChanged(routeData.page)',
-        ''
+        '_routePageChanged(routeData.page)'
       ],
+
+      ready: function() {
+        // console.log('this.$.auth.statusKnown',this.$.auth.statusKnown);
+      },
 
       _routePageChanged: function(page) {
         this.page = page || 'home';
@@ -201,7 +202,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.auth.signOut()
           .then(() => {
             console.log('signed out!');
-            console.log('this.user', this.user);
           })
           .catch(err => {
             console.error(new Error(err));

@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 
 <dom-module id="ls-dashboard">
   <template>
@@ -21,11 +22,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <div class="card">
+    <firebase-query
+        id="query"
+        app-name="expeditions"
+        path="/users/[[user.uid]]/expeditions/"
+        data="{{data}}">
+    </firebase-query>
+
+    <div hidden$="[[!signedIn]]" class="card">
       <h1>Dashboard</h1>
       <p>Expeditions in Progress</p>
       <p>Elements in Progress</p>
     </div>
+    <div hidden$="[[signedIn]]" class="card">Please log in to view the Dashboard</div>
   </template>
 
   <script>
